@@ -409,8 +409,8 @@ class Favorites(object):
     def playlists(self):
         return self._session._map_request(self._base_url + '/playlists', ret='playlists')
 
-    def tracks(self):
-        request = self._session.request('GET', self._base_url + '/tracks')
+    def tracks(self, params={'limit': 9999}):
+        request = self._session.request('GET', self._base_url + '/tracks', params=params)
         return [_parse_media(item['item']) for item in request.json()['items']]
 
 
